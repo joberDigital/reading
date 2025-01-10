@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+<style>
+    body {
+    background-color: #f0f0f0; /* Gray 300 */
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.container {
+    width: 1180px;
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 6px;
+    border: 1px solid var(--gray-300, #DEE2E7);
+    background: #FFF;
+    margin: 0 auto; 
+    margin-bottom:24px;
+}
+.template {
+display: none; /* Inicialmente oculta todas las plantillas */
+}
+.active {
+display: block;
+}
+
+
+.bodyApp {
+    font-family: 'Roboto Mono', monospace;
+    text-align: center;
+    background-image: url('https://actechalumni.org/wp-content/uploads/elementor/thumbs/applied-science-phjf9zqgj0as3u2oh9ht3zwemu8mw14kkyhd9koso8.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+   width: auto;
+    height:auto;
+     
+      }
+
+.headerPrincipal {
+    background: transparent;
+    backdrop-filter: blur(2px); 
+    padding: 5px 10px;
+  text-align: end;
+  margin: 5px;
+  border-radius: 10%;
+  border:10px double;
+  border-top: none;
+  border-bottom-right-radius: 10%;
+  border-bottom-left-radius: 10%;
+  box-shadow:inset 10px -10px 25px black;
+  }
+  .headerPrincipal-titulo {
+  font-weight: bold;
+  font-size: 1em;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 3px gainsboro;
+  }
+.row{
+    display: flex;
+    flex-direction: row;
+    margin:0 50px;
+
+}
+.texto{
+border: groove 5px #808285;
+width: auto;
+padding: 10px;
+font-size: 10px;
+background: rgb(198, 198, 189);
+}
+
+.catalog-part{
+    font-family: Proxima Nova, helvetica neue, helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 50%;
+    color: #ffffff;
+    border-color: white;
+    box-shadow: inset 0 3px 5px white;
+    width: auto;
+    padding: 10px;
+    margin: 5px 1px 0px 0px;
+    align-items: center;
+    color: inherit;
+    border:solid 1px ;
+    border-top: none;
+    border-left: none;
+}
+.catalog-part:hover {
+    background-color: #ddd;
+  }
+
+  .catalog-part.active {
+    background-color: #4CAF50; /* Green on hover */
+    color: white;
+  }
+/* botones */
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px; /* Espacio entre botones */
+}
+
+.siginificado{
+    border-bottom-right-radius: 100%;
+    border-bottom-left-radius: 100%;
+    background-color: #0077cc;
+    color: #fff;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+ 
+    padding:10px 0;
+    box-shadow:inset 10px -10px 25px black;      
+    font-size: 10px;
+}
+.inglesPresente{
+    background-color: #b0cadd;
+    color: #fff;
+    text-align: end;
+    box-shadow:inset 10px -10px 25px black;      
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px; /* Add padding here */
+    width: auto;
+    height: auto;
+    letter-spacing: 1px;
+    /* line-break: strict;
+    overflow-wrap: break-word; */
+    tab-size: 2;
+text-indent: 0%;
+/* word-break: break-all; */
+margin: 20px;
+box-sizing: border-box;
+}
+.headerPrincipal .inglesPresente:nth-child(2){
+display: flex;
+padding-left: 30%;
+text-align: end;
+}
+   .container__input {
+  box-shadow: 2px 1px 3px 0px black;
+width: auto;
+height: auto;
+border-radius: 16px;
+background-color:#1875e8;
+border: none;
+color: white;
+padding: .5rem;
+font-size: 10px;
+font-family: "Inter", sans-serif;
+}
+
+.boton{
+color: #1875e8;
+font-size: .7rem;
+border: none;
+background-color: black;
+border-radius: 16px;
+cursor: pointer;
+margin: 5px;
+align-items: end;
+}
+
+.container__campo{
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  }
+  .texto__parrafo {
+    display: flex;
+  color: #fff;
+  font-family: "Inter";
+  font-size: 10px;
+  margin: 5px auto;
+  border: solid 2px;
+padding: 5px;
+}
+</style>
+</head>
+
+<body>
+  <header>
+    <div class="bodyApp">
+      <div class="headerPrincipal">
+        <h1>
+          <div class="headerPrincipal-titulo">Simple Texts</div>
+        </h1>
+      </div>
+      <div id="header1"></div>
+    </header>
+    <script>
+      var questionAnswer=""
+      const templateId = document.getElementById("header1");
+
+function showTemplate(templateInput) {
+        const container = document.createElement('div');
+        container.innerHTML = `
+          <div class="headerPrincipal">
+              <div class="catalog-part">Read the following passage and answer the questions:</div>
+          <h2 id="reading" class="siginificado row"></h2>
+          <div class="row">
+    
+          <div id="pregunta1" class="catalog-part" onclick="question('cakes')"></div>
+              <div id="pregunta2" class="catalog-part" onclick="question('template2')"></div>
+              <div id="pregunta3" class="catalog-part"  onclick="question('template3')"></div>
+            </div>
+            
+          </div>
+
+          <h2 id=${templateInput} class="headerPrincipal">
+              <div id="cakes" class="template"></div>
+              <div id="template2" class="template"></div>
+              <div id="template3" class="template"></div>
+            </h2>
+          </div>
+          `;
+          document.body.appendChild(container);
+          const reading=document.getElementById("reading").textContent="Maria loves to bake cakes. She usually bakes on weekends.Last Saturday, she baked a chocolate cake for her friend's birthday. Next week, she plans to bake a lemon cake."
+          const cakes = document.getElementById("pregunta1").textContent="What does Maria usually bake?"
+          const template2 = document.getElementById("pregunta2").textContent="What did she bake last Saturday?"
+          const template3 = document.getElementById("pregunta3").textContent="What does she plan to bake next week?"
+}
+
+showTemplate(templateId)
+const templateInput = document.getElementById("header1");
+
+function question(templateId) {
+  const reading= document.getElementById("reading").textContent="Maria loves to bake cakes. She usually bakes on weekends.Last Saturday, she baked a chocolate cake for her friend's birthday. Next week, she plans to bake a lemon cake."
+
+  const buttons = document.querySelectorAll('.catalog-part');
+        buttons.forEach(button => {
+        button.classList.remove('active');
+});
+const templates = document.getElementsByClassName('template');
+  for (let i = 0; i < templates.length; i++) {
+    templates[i].classList.remove('active');
+  }
+const selectedTemplate = document.getElementById(templateId);
+selectedTemplate.classList.add('active');
+switch (templateId) {
+  
+    case 'cakes':
+      questionAnswer="cakes"
+      plantilla( selectedTemplate)
+      break;
+
+    case 'template2':
+      questionAnswer="chocolate cake"  
+      plantilla( selectedTemplate)
+      break;
+      
+    case 'template3': 
+      questionAnswer="lemon cake"  
+      plantilla( selectedTemplate)
+      break;
+}
+      }
+
+function plantilla(selectedTemplate) {
+        selectedTemplate.innerHTML = `
+  <div class="container__campo"> 
+       <label class="texto__parrafo">
+           <input class="container__input"  id="search" >
+          <button class="boton"  onclick="buscar(search)">buscar</button>
+       </label>
+        </div>
+`;
+const selectedTemplate3 = document.querySelector("#search");
+}
+function buscar(a3){
+  let answer=a3.value
+    if(answer==questionAnswer){
+    setTimeout(()=>{
+      alert( " \n\ \n\ :) \n\ very good \n\ :)\n\ answer is : \t\ "+ answer+ ' \n\ 🥧 ')
+   window.location.reload() 
+   } ,1000)
+  }else{
+    setTimeout(()=>{
+      alert("\n\ \n\ :( \n\😔😔😔\n\ :(")
+   window.location.reload() 
+   } ,1000)
+    }
+    a3.value=""
+}
+</script>
+</body>
+</html>
