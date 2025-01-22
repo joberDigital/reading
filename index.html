@@ -200,7 +200,6 @@ padding: 5px;
     </header>
     <script>
       var questionAnswer=""
-      const templateId = document.getElementById("header1");
 
 function showTemplate(templateInput) {
         const container = document.createElement('div');
@@ -231,27 +230,36 @@ function showTemplate(templateInput) {
           const template3 = document.getElementById("pregunta3").textContent="What does she plan to bake next week?"
 }
 
-showTemplate(templateId)
-const templateInput = document.getElementById("header1");
+showTemplate()
 
 function question(templateId) {
   const reading= document.getElementById("reading").textContent="Maria loves to bake cakes. She usually bakes on weekends.Last Saturday, she baked a chocolate cake for her friend's birthday. Next week, she plans to bake a lemon cake."
 
+
   const buttons = document.querySelectorAll('.catalog-part');
-        buttons.forEach(button => {
-        button.classList.remove('active');
-});
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    // Remove 'active' from all buttons
+    buttons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+  })})
+
+
 const templates = document.getElementsByClassName('template');
   for (let i = 0; i < templates.length; i++) {
     templates[i].classList.remove('active');
   }
-const selectedTemplate = document.getElementById(templateId);
-selectedTemplate.classList.add('active');
-switch (templateId) {
+    
+  const selectedTemplate = document.getElementById(templateId);
+  selectedTemplate.classList.add('active');
+    
+    switch (templateId) {
   
     case 'cakes':
       questionAnswer="cakes"
       plantilla( selectedTemplate)
+      
       break;
 
     case 'template2':
@@ -279,9 +287,11 @@ const selectedTemplate3 = document.querySelector("#search");
 }
 function buscar(a3){
   let answer=a3.value
-    if(answer==questionAnswer){
+let answerInput=answer.toLowerCase()
+console.log(answerInput)
+    if(answerInput==questionAnswer){
     setTimeout(()=>{
-      alert( " \n\ \n\ :) \n\ very good \n\ :)\n\ answer is : \t\ "+ answer+ ' \n\ 🥧 ')
+      alert( " \n\ \n\ :) \n\ very good \n\ :)\n\ answer is : \t\ "+ answerInput+ ' \n\ 🥧 ')
    window.location.reload() 
    } ,1000)
   }else{
